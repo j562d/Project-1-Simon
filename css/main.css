@@ -1,0 +1,60 @@
+
+body {
+  margin: 100px 500px;
+  text-align: center;
+  background-color: black;
+
+}
+
+
+#main {
+  font-size: 50px;
+  color: red;
+}
+
+td {
+  border: solid black 2px;
+  width: 400px;
+  height: 100px;
+  color: red;
+  border-radius: 15px;
+
+
+}
+
+#round {
+  color: white;
+
+}
+
+p {
+  color: white;
+}
+
+button {
+  font-size: 20px;
+  margin-top: 50px;
+
+}
+
+#cell1 {
+  background-color: red;
+}
+
+#cell2 {
+  background-color: blue;
+}
+
+#cell3 {
+  background-color: green;
+}
+
+#cell4 {
+  background-color: yellow;
+}
+
+#cell1:hover {
+  background-color: pink;
+}
+
+
