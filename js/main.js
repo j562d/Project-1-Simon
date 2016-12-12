@@ -10,41 +10,45 @@ var startBtn = document.querySelector('button');
 /*----event listeners-----*/
 
 document.getElementById('cell1')
-  .addEventListener('click', handleClick1);
+  .addEventListener('click', handleClickRed);
 
 document.getElementById('cell2')
-  .addEventListener('click', handleClick2);
+  .addEventListener('click', handleClickBlue);
 
 document.getElementById('cell3')
-  .addEventListener('click', handleClick3);
+  .addEventListener('click', handleClickGreen);
 
 document.getElementById('cell4')
-  .addEventListener('click', handleClick4);
+  .addEventListener('click', handleClickYellow);
 
 startBtn.addEventListener('click', startGame);
 
 
+/*----functions-----*/
 
-
-function handleClick1 () {
+//click Red
+function handleClickRed () {
   var red = 1;
   playPattern.push(red);
   compare();
 };
 
-function handleClick2 () {
+//click Blue
+function handleClickBlue () {
   var blue = 2;
   playPattern.push(blue);
   compare();
 };
 
-function handleClick3 () {
+//click Green
+function handleClickGreen () {
   var green = 3;
   playPattern.push(green);
   compare();
 };
 
-function handleClick4 () {
+//click Yellow
+function handleClickYellow () {
   var yellow = 4;
   playPattern.push(yellow);
   compare();
@@ -52,24 +56,34 @@ function handleClick4 () {
 
 
 //adds random number to compter's array//
-function cTurn() {
+function compTurn() {
   var random = Math.floor(Math.random()*4+1);
   compPattern.push(random);
   playPattern = [];
   roundCounter();
+
+  if (random === 1) {
+    document.getElementById('cell1').setAttribute("style", "opacity: 1");
+  } else if (random === 2) {
+    document.getElementById('cell2').setAttribute("style", "opacity: 1");
+  } else if (random === 3) {
+    document.getElementById('cell3').setAttribute("style", "opacity: 1");
+  } else if (random === 4) {
+    document.getElementById('cell4').setAttribute("style", "opacity: 1");
+  }
 }
 
 //adds number to player's array//
-function pTurn() {
-  var choice =
-  playPattern.push(choice);
-}
+//function pTurn() {
+//  var choice =
+//  playPattern.push(choice);
+//}
 
 //start game function
 function startGame() {
   compPattern = [];
   playPattern = [];
-  cTurn();
+  compTurn();
 }
 
 //keeps track of round
@@ -92,7 +106,7 @@ function compare() {
       over();
     }
   } if(compPattern.length == playPattern.length) {
-    cTurn();
+    compTurn();
   }
 }
 
