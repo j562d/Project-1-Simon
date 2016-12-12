@@ -4,6 +4,7 @@ var compPattern = [];
 var playPattern = [];
 var round = 0;
 var startBtn = document.querySelector('button');
+//var element = document.getElementsByClassName("cells");
 
 
 /*----event listeners-----*/
@@ -66,7 +67,8 @@ function pTurn() {
 
 //start game function
 function startGame() {
-  round = 0;
+  compPattern = [];
+  playPattern = [];
   cTurn();
 }
 
@@ -77,9 +79,11 @@ function roundCounter() {
 
 //plays computer's array
 function playbackComputer() {
-  var i = 0;
-
+  for(var i = 0; i < compPattern.length; i++) {
+    console.log(compPattern[i]);
+  }
 }
+
 
 //compare arrays
 function compare() {
@@ -92,14 +96,17 @@ function compare() {
   }
 }
 
+//game over
 function over(){
   alert("WRONG!");
   compPattern = [];
-  round = 0;
+  startGame();
+}
+
+//light up
+function light() {
+
 }
 
 
-function light(){
-  document.getElementById('cell2').className = "lightUp";
-}
 

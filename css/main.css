@@ -41,24 +41,28 @@ button {
 
 #cell1 {
   background-color: red;
+  opacity: .5;
 }
 
 #cell2 {
   background-color: blue;
+  opacity: .5;
 }
 
 #cell3 {
   background-color: green;
+  opacity: .5;
 }
 
 #cell4 {
   background-color: yellow;
+  opacity: .5;
 }
 
 #cell1:hover {
-  background-color: pink;
+  opacity: 1;
 }
 
 .lightUp {
-  border-color: white;
+  opacity: 1 !important;
 }
