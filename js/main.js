@@ -3,6 +3,7 @@
 var compPattern = [];
 var playPattern = [];
 var round = 0;
+var startBtn = document.querySelector('button');
 
 
 /*----event listeners-----*/
@@ -19,6 +20,9 @@ document.getElementById('cell3')
 document.getElementById('cell4')
   .addEventListener('click', handleClick4);
 
+startBtn.addEventListener('click', startGame);
+
+
 
 
 function handleClick1 () {
@@ -30,16 +34,19 @@ function handleClick1 () {
 function handleClick2 () {
   var blue = 2;
   playPattern.push(blue);
+  compare();
 };
 
 function handleClick3 () {
   var green = 3;
   playPattern.push(green);
+  compare();
 };
 
 function handleClick4 () {
   var yellow = 4;
   playPattern.push(yellow);
+  compare();
 };
 
 
@@ -48,6 +55,7 @@ function cTurn() {
   var random = Math.floor(Math.random()*4+1);
   compPattern.push(random);
   playPattern = [];
+  roundCounter();
 }
 
 //adds number to player's array//
@@ -58,10 +66,8 @@ function pTurn() {
 
 //start game function
 function startGame() {
-  compPattern = [];
-  playPattern = [];
   round = 0;
-  roundStart();
+  cTurn();
 }
 
 //keeps track of round
@@ -88,5 +94,12 @@ function compare() {
 
 function over(){
   alert("WRONG!");
+  compPattern = [];
+  round = 0;
+}
+
+
+function light(){
+  document.getElementById('cell2').className = "lightUp";
 }
 
