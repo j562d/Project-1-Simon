@@ -23,13 +23,13 @@ yellowBox.addEventListener('click', handleClickYellow);
 
 startBtn.addEventListener('click', startGame);
 
-redBox.addEventListener('click', playSound1);
+redBox.addEventListener('mousedown', playSound1);
 
-blueBox.addEventListener('click', playSound2);
+blueBox.addEventListener('mousedown', playSound2);
 
-greenBox.addEventListener('click', playSound3);
+greenBox.addEventListener('mousedown', playSound3);
 
-yellowBox.addEventListener('click', playSound4);
+yellowBox.addEventListener('mousedown', playSound4);
 
 redBox.addEventListener('mousedown', light1);
 redBox.addEventListener('mouseup', lightOff1);
@@ -46,19 +46,19 @@ yellowBox.addEventListener('mouseup', lightOff4);
 /*----functions-----*/
 
 function playSound1 () {
-    document.getElementById('play1').play();
+    cloneAudio(play1);
 }
 
 function playSound2 () {
-    document.getElementById('play2').play();
+    cloneAudio(play2);
 }
 
 function playSound3 () {
-    document.getElementById('play3').play();
+    cloneAudio(play3);
 }
 
 function playSound4 () {
-    document.getElementById('play4').play();
+    cloneAudio(play4);
 }
 
 
@@ -97,7 +97,7 @@ function compTurn() {
   compPattern.push(random);
   playPattern = [];
   roundCounter();
-  displayColors();
+  setTimeout(displayColors, 1000);
 }
 
 
@@ -267,3 +267,18 @@ function lightOff3() {
 function lightOff4() {
   yellowBox.setAttribute("style", "opacity:.5");
 }
+
+//function timeout() {
+//  setTimeout(alert, 5000);
+//}
+
+//function test() {
+//  alert("hello");
+//}
+
+//clone audio
+function cloneAudio(audioNode) {
+  var clone = audioNode.cloneNode(true);
+  clone.play();
+}
+
