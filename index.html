@@ -3,28 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Simon</title>
+  <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-  <p id="main">Simon Says</p>
-  <p id="losing"></p>
-  <table id="board">
-    <tr>
-      <td id="cell1" class="cells">1</td>
-      <td id="cell2" class="cells">2</td>
-    </tr>
-    <tr>
-      <td id="cell3" class="cells">3</td>
-      <td id="cell4" class="cells">4</td>
-    </tr>
-  </table>
+  <p id="main">SIMON SAYS</p>
+  <p id="endgame"></p>
+<div id="container">
+    <div id="side1">fhfdlk</div>
+    <div id="cell1" class="block"></div>
+    <div id="cell2" class="block"></div>
+    <div id="cell3" class="block"></div>
+    <div id="cell4" class="block"></div>
+    <div id="side2"></div>
+</div>
+<div id="test">
   <p>ROUND</p>
-  <p id="round"></p>
+  <p id="round">&nbsp;</p>
   <button type="">START</button>
-  <audio id="play1" src="assets/s1.wav"></audio>
-  <audio id="play2" src="assets/s2.wav"></audio>
-  <audio id="play3" src="assets/s3.wav"></audio>
-  <audio id="play4" src="assets/s4.wav"></audio>
+</div>
+  <audio id="play1" src="assets/piano1.wav"></audio>
+  <audio id="play2" src="assets/piano2.wav"></audio>
+  <audio id="play3" src="assets/piano3.wav"></audio>
+  <audio id="play4" src="assets/piano4.wav"></audio>
+  <audio id="play5" src="assets/lose.mp3"></audio>
+  <audio id="play6" src="assets/start.mp3"></audio>
   <script src="js/main.js"></script>
 </body>
 </html>

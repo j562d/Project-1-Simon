@@ -2,48 +2,53 @@
 
 var compPattern = [];
 var playPattern = [];
-var round = 0;
 var startBtn = document.querySelector('button');
 var redBox = document.getElementById('cell1');
 var blueBox = document.getElementById('cell2');
 var greenBox = document.getElementById('cell3');
 var yellowBox = document.getElementById('cell4');
+var parent = document.getElementById('container');
 
-//var element = document.getElementsByClassName("cells");
+
 
 /*----event listeners-----*/
 
-redBox.addEventListener('click', handleClickRed);
+parent.addEventListener('click', playerChoice);
 
-blueBox.addEventListener('click', handleClickBlue);
+//redBox.addEventListener('click', playerChoice);
 
-greenBox.addEventListener('click', handleClickGreen);
+//blueBox.addEventListener('click', playerChoice);
 
-yellowBox.addEventListener('click', handleClickYellow);
+//greenBox.addEventListener('click', playerChoice);
+
+//yellowBox.addEventListener('click', playerChoice);
 
 startBtn.addEventListener('click', startGame);
 
-redBox.addEventListener('mousedown', playSound1);
+parent.addEventListener('mousedown', playerClickDown);
 
-blueBox.addEventListener('mousedown', playSound2);
+//redBox.addEventListener('mousedown', playerClickDown);
 
-greenBox.addEventListener('mousedown', playSound3);
+//blueBox.addEventListener('mousedown', playerClickDown);
 
-yellowBox.addEventListener('mousedown', playSound4);
+//greenBox.addEventListener('mousedown', playerClickDown);
 
-redBox.addEventListener('mousedown', light1);
-redBox.addEventListener('mouseup', lightOff1);
+//yellowBox.addEventListener('mousedown', playerClickDown);
 
-blueBox.addEventListener('mousedown', light2);
-blueBox.addEventListener('mouseup', lightOff2);
+parent.addEventListener('mouseup', playerClickUp);
 
-greenBox.addEventListener('mousedown', light3);
-greenBox.addEventListener('mouseup', lightOff3);
+//redBox.addEventListener('mouseup', playerClickUp);
 
-yellowBox.addEventListener('mousedown', light4);
-yellowBox.addEventListener('mouseup', lightOff4);
+//blueBox.addEventListener('mouseup', playerClickUp);
+
+//greenBox.addEventListener('mouseup', playerClickUp);
+
+//yellowBox.addEventListener('mouseup', playerClickUp);
 
 /*----functions-----*/
+
+disable();
+
 
 function playSound1 () {
     cloneAudio(play1);
@@ -62,37 +67,11 @@ function playSound4 () {
 }
 
 
-//click Red
-function handleClickRed () {
-  //var red = 1;
-  playPattern.push(1);
-  compare();
-};
-
-//click Blue
-function handleClickBlue () {
-  //var blue = 2;
-  playPattern.push(2);
-  compare();
-};
-
-//click Green
-function handleClickGreen () {
-  //var green = 3;
-  playPattern.push(3);
-  compare();
-};
-
-//click Yellow
-function handleClickYellow () {
-  //var yellow = 4;
-  playPattern.push(4);
-  compare();
-};
 
 
 //adds random number to compter's array//
 function compTurn() {
+  disable();
   var random = Math.floor(Math.random()*4+1);
   compPattern.push(random);
   playPattern = [];
@@ -169,7 +148,10 @@ function displayColors() {
       //display.innerHTML = '';
       unHighlight();
       colorIdx++;
-      if (colorIdx === compPattern.length) clearInterval(timerId);
+      if (colorIdx === compPattern.length) {
+        clearInterval(timerId);
+        enable();
+      }
     }
     tickCount++;
   }
@@ -178,19 +160,14 @@ function displayColors() {
 
 
 
-
-//adds number to player's array//
-//function pTurn() {
-//  var choice =
-//  playPattern.push(choice);
-//}
-
 //start game function
 function startGame() {
-  document.getElementById('losing').innerHTML="";
+  document.getElementById('endgame').innerHTML="";
+  cloneAudio(play6);
   compPattern = [];
   playPattern = [];
-  compTurn();
+  setTimeout(compTurn, 1000);
+  disableStart();
 }
 
 //keeps track of round
@@ -222,51 +199,25 @@ function compare() {
   for(var i = 0; i < playPattern.length; i++) {
     if(compPattern[i] !=playPattern[i]) {
       over();
-    }
-  } if(compPattern.length == playPattern.length) {
+    } if(playPattern.length == 5) {
+    winner();
+    break;
+    } if(compPattern.length == playPattern.length) {
     compTurn();
   }
+}
 }
 
 //game over
 function over(){
   //alert("WRONG!");
-  document.getElementById('losing').innerHTML='Please try again';
+  document.getElementById('endgame').innerHTML='Wrong move! Please Try Again!';
+  cloneAudio(play5);
   compPattern = [];
+  initialize();
 }
 
-//light up
-function light1() {
-  redBox.setAttribute("style", "opacity:1");
-}
 
-function light2() {
-  blueBox.setAttribute("style", "opacity:1");
-}
-
-function light3() {
-  greenBox.setAttribute("style", "opacity:1");
-}
-
-function light4() {
-  yellowBox.setAttribute("style", "opacity:1");
-}
-
-function lightOff1() {
-  redBox.setAttribute("style", "opacity:.5");
-}
-
-function lightOff2() {
-  blueBox.setAttribute("style", "opacity:.5");
-}
-
-function lightOff3() {
-  greenBox.setAttribute("style", "opacity:.5");
-}
-
-function lightOff4() {
-  yellowBox.setAttribute("style", "opacity:.5");
-}
 
 //function timeout() {
 //  setTimeout(alert, 5000);
@@ -282,3 +233,88 @@ function cloneAudio(audioNode) {
   clone.play();
 }
 
+//pushes player's choice to player array
+function playerChoice(evt) {
+    var clickedItem = evt.target.id
+    if (clickedItem ==='cell1')
+        playPattern.push(1);
+    if (clickedItem ==='cell2')
+        playPattern.push(2);
+    if (clickedItem ==='cell3')
+        playPattern.push(3);
+    if (clickedItem ==='cell4')
+        playPattern.push(4);
+    compare();
+    }
+
+//plays sound and flashes on player's click
+function playerClickDown(evt) {
+  var clickedEl = evt.target.id
+    if (clickedEl ==='cell1') {
+        cloneAudio(play1);
+        redBox.setAttribute("style", "opacity:1");
+    }
+    if (clickedEl ==='cell2') {
+        cloneAudio(play2);
+        blueBox.setAttribute("style", "opacity:1");
+    }
+    if (clickedEl ==='cell3') {
+        cloneAudio(play3);
+        greenBox.setAttribute("style", "opacity:1");
+    }
+    if (clickedEl ==='cell4') {
+        cloneAudio(play4);
+        yellowBox.setAttribute("style", "opacity:1");
+      }
+}
+
+//unhighligts on mouse up
+function playerClickUp(evt) {
+  var clickedEl = evt.target.id
+    if (clickedEl ==='cell1') {
+        redBox.setAttribute("style", "opacity:.3");
+    }
+    if (clickedEl ==='cell2') {
+        blueBox.setAttribute("style", "opacity:.3");
+    }
+    if (clickedEl ==='cell3') {
+        greenBox.setAttribute("style", "opacity:.3");
+    }
+    if (clickedEl ==='cell4') {
+        yellowBox.setAttribute("style", "opacity:.3");
+    }
+}
+
+//winner
+function winner(){
+  //alert("WRONG!");
+  document.getElementById('endgame').innerHTML='<img src="assets/excited.gif">';
+  initialize();
+}
+
+//disable event handlers
+function disable() {
+  parent.removeEventListener('click', playerChoice);
+  parent.removeEventListener('mousedown', playerClickDown);
+  parent.removeEventListener('mouseup', playerClickUp);
+}
+
+function enable() {
+  parent.addEventListener('click', playerChoice);
+  parent.addEventListener('mousedown', playerClickDown);
+  parent.addEventListener('mouseup', playerClickUp);
+}
+
+function initialize() {
+  disable();
+  enableStart();
+
+}
+
+function enableStart() {
+  startBtn.addEventListener('click', startGame);
+}
+
+function disableStart() {
+  startBtn.removeEventListener('click', startGame);
+}

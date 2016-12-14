@@ -1,9 +1,10 @@
+* {
+  font-family: 'Exo', sans-serif;
+}
 
 body {
-  margin: 100px 500px;
-  text-align: center;
-  background-color: black;
-
+  background-image: url("http://i.imgur.com/CmhAiOe.jpg");
+  -webkit-user-select: none;
 }
 
 
@@ -13,56 +14,77 @@ body {
 }
 
 
+#container{
+    text-align:center;
+    max-width:450px;
+    margin:0 auto;
 
-td {
-  border: solid black 2px;
-  width: 400px;
-  height: 100px;
-  color: red;
-  border-radius: 15px;
 
+}
+.block{
+    margin:5px;
+    display:inline-block;
+    height:150px;
+    width: 150px;
 
 }
 
 #round {
   color: white;
 
+
+}
+
+#test {
+  text-align: center;
 }
 
 p {
   color: white;
+  text-align: center;
 }
 
 button {
   font-size: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
+  text-align: center;
 
 }
 
 #cell1 {
   background-color: red;
-  opacity: .5;
+  opacity: .3;
+  border-radius: 150px 0 0 0;
 }
 
 #cell2 {
   background-color: blue;
-  opacity: .5;
+  opacity: .3;
+  border-radius: 0 150px 0 0;
 }
 
 #cell3 {
   background-color: green;
-  opacity: .5;
+  opacity: .3;
+  border-radius: 0 0 0 150px;
 }
 
 #cell4 {
   background-color: yellow;
-  opacity: .5;
+  opacity: .3;
+  border-radius: 0 0 150px 0;
 }
 
-#cell2:active {
-  opcaity: 1;
-}
+
 
 .lightUp {
   opacity: 1 !important;
+}
+
+#side1 {
+  color: white;
+}
+
+#endgame {
+  font-size: 30px;
 }
