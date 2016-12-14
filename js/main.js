@@ -4,52 +4,79 @@ var compPattern = [];
 var playPattern = [];
 var round = 0;
 var startBtn = document.querySelector('button');
+var redBox = document.getElementById('cell1');
+var blueBox = document.getElementById('cell2');
+var greenBox = document.getElementById('cell3');
+var yellowBox = document.getElementById('cell4');
+
 //var element = document.getElementsByClassName("cells");
 
 /*----event listeners-----*/
 
-document.getElementById('cell1')
-  .addEventListener('click', handleClickRed);
+redBox.addEventListener('click', handleClickRed);
 
-document.getElementById('cell2')
-  .addEventListener('click', handleClickBlue);
+blueBox.addEventListener('click', handleClickBlue);
 
-document.getElementById('cell3')
-  .addEventListener('click', handleClickGreen);
+greenBox.addEventListener('click', handleClickGreen);
 
-document.getElementById('cell4')
-  .addEventListener('click', handleClickYellow);
+yellowBox.addEventListener('click', handleClickYellow);
 
 startBtn.addEventListener('click', startGame);
+
+redBox.addEventListener('click', playSound1);
+
+blueBox.addEventListener('click', playSound2);
+
+greenBox.addEventListener('click', playSound3);
+
+yellowBox.addEventListener('click', playSound4);
+
 
 
 /*----functions-----*/
 
+function playSound1 () {
+    document.getElementById('play1').play();
+}
+
+function playSound2 () {
+    document.getElementById('play2').play();
+}
+
+function playSound3 () {
+    document.getElementById('play3').play();
+}
+
+function playSound4 () {
+    document.getElementById('play4').play();
+}
+
+
 //click Red
 function handleClickRed () {
-  var red = 1;
-  playPattern.push(red);
+  //var red = 1;
+  playPattern.push(1);
   compare();
 };
 
 //click Blue
 function handleClickBlue () {
-  var blue = 2;
-  playPattern.push(blue);
+  //var blue = 2;
+  playPattern.push(2);
   compare();
 };
 
 //click Green
 function handleClickGreen () {
-  var green = 3;
-  playPattern.push(green);
+  //var green = 3;
+  playPattern.push(3);
   compare();
 };
 
 //click Yellow
 function handleClickYellow () {
-  var yellow = 4;
-  playPattern.push(yellow);
+  //var yellow = 4;
+  playPattern.push(4);
   compare();
 };
 
@@ -96,7 +123,7 @@ function unHighlight() {
 
 
 // timer variables
-var tickResolution = 500;
+var tickResolution = 350;
 var ticksPerColor = 2;
 var ticksBetween = 1;
 var timerId;
@@ -117,12 +144,16 @@ function displayColors() {
     if (tickCount ===  showTick) {
    if (compPattern[colorIdx] === 1)  {
     document.getElementById('cell1').setAttribute("style", "opacity: 1");
+    playSound1();
     } else if (compPattern[colorIdx] === 2) {
         document.getElementById('cell2').setAttribute("style", "opacity: 1");
+        playSound2();
       } else if (compPattern[colorIdx] === 3) {
         document.getElementById('cell3').setAttribute("style", "opacity: 1");
+        playSound3();
       } else if (compPattern[colorIdx] === 4) {
         document.getElementById('cell4').setAttribute("style", "opacity: 1");
+        playSound4();
       }
     };
     if (tickCount ===  hideTick) {
@@ -191,13 +222,9 @@ function compare() {
 function over(){
   alert("WRONG!");
   compPattern = [];
-  startGame();
 }
 
 //light up
 //function light() {
-
-
-
 
 

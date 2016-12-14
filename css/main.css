@@ -59,8 +59,8 @@ button {
   opacity: .5;
 }
 
-#cell1:hover {
-  opacity: 1;
+#cell2:active {
+  opcaity: 1;
 }
 
 .lightUp {
