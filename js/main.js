@@ -31,7 +31,17 @@ greenBox.addEventListener('click', playSound3);
 
 yellowBox.addEventListener('click', playSound4);
 
+redBox.addEventListener('mousedown', light1);
+redBox.addEventListener('mouseup', lightOff1);
 
+blueBox.addEventListener('mousedown', light2);
+blueBox.addEventListener('mouseup', lightOff2);
+
+greenBox.addEventListener('mousedown', light3);
+greenBox.addEventListener('mouseup', lightOff3);
+
+yellowBox.addEventListener('mousedown', light4);
+yellowBox.addEventListener('mouseup', lightOff4);
 
 /*----functions-----*/
 
@@ -130,7 +140,6 @@ var timerId;
  var random = Math.floor(Math.random()*4+1);
 
 // elements
-var display = document.getElementById('cell4');
 
 
 // helper functions
@@ -178,6 +187,7 @@ function displayColors() {
 
 //start game function
 function startGame() {
+  document.getElementById('losing').innerHTML="";
   compPattern = [];
   playPattern = [];
   compTurn();
@@ -220,11 +230,40 @@ function compare() {
 
 //game over
 function over(){
-  alert("WRONG!");
+  //alert("WRONG!");
+  document.getElementById('losing').innerHTML='Please try again';
   compPattern = [];
 }
 
 //light up
-//function light() {
+function light1() {
+  redBox.setAttribute("style", "opacity:1");
+}
 
+function light2() {
+  blueBox.setAttribute("style", "opacity:1");
+}
 
+function light3() {
+  greenBox.setAttribute("style", "opacity:1");
+}
+
+function light4() {
+  yellowBox.setAttribute("style", "opacity:1");
+}
+
+function lightOff1() {
+  redBox.setAttribute("style", "opacity:.5");
+}
+
+function lightOff2() {
+  blueBox.setAttribute("style", "opacity:.5");
+}
+
+function lightOff3() {
+  greenBox.setAttribute("style", "opacity:.5");
+}
+
+function lightOff4() {
+  yellowBox.setAttribute("style", "opacity:.5");
+}
