@@ -15,35 +15,15 @@ var parent = document.getElementById('container');
 
 parent.addEventListener('click', playerChoice);
 
-//redBox.addEventListener('click', playerChoice);
-
-//blueBox.addEventListener('click', playerChoice);
-
-//greenBox.addEventListener('click', playerChoice);
-
-//yellowBox.addEventListener('click', playerChoice);
 
 startBtn.addEventListener('click', startGame);
 
 parent.addEventListener('mousedown', playerClickDown);
 
-//redBox.addEventListener('mousedown', playerClickDown);
-
-//blueBox.addEventListener('mousedown', playerClickDown);
-
-//greenBox.addEventListener('mousedown', playerClickDown);
-
-//yellowBox.addEventListener('mousedown', playerClickDown);
 
 parent.addEventListener('mouseup', playerClickUp);
 
-//redBox.addEventListener('mouseup', playerClickUp);
 
-//blueBox.addEventListener('mouseup', playerClickUp);
-
-//greenBox.addEventListener('mouseup', playerClickUp);
-
-//yellowBox.addEventListener('mouseup', playerClickUp);
 
 /*----functions-----*/
 
@@ -81,18 +61,6 @@ function compTurn() {
 
 
 
-//function highlight() {
-//  if (random === 1) {
-//    document.getElementById('cell1').setAttribute("style", "opacity: 1");
-//  } else if (random === 2) {
-//    document.getElementById('cell2').setAttribute("style", "opacity: 1");
-//  } else if (random === 3) {
-//    document.getElementById('cell3').setAttribute("style", "opacity: 1");
-//  } else if (random === 4) {
-//    document.getElementById('cell4').setAttribute("style", "opacity: 1");
-//  }
-//}
-
 
 function unHighlight() {
     for(var i = 0; i < compPattern.length; i++) {
@@ -112,7 +80,7 @@ function unHighlight() {
 
 
 // timer variables
-var tickResolution = 350;
+var tickResolution = 150;
 var ticksPerColor = 2;
 var ticksBetween = 1;
 var timerId;
@@ -162,7 +130,7 @@ function displayColors() {
 
 //start game function
 function startGame() {
-  document.getElementById('endgame').innerHTML="";
+  document.getElementById('primary').innerHTML='&nbsp;';
   cloneAudio(play6);
   compPattern = [];
   playPattern = [];
@@ -172,7 +140,7 @@ function startGame() {
 
 //keeps track of round
 function roundCounter() {
-  document.getElementById('round').innerHTML = compPattern.length;
+  document.getElementById('round').innerHTML = "Round " + compPattern.length;
 }
 
 //plays computer's array
@@ -200,6 +168,8 @@ function compare() {
     if(compPattern[i] !=playPattern[i]) {
       over();
     }
+  } if(compPattern[i] === playPattern[i] && playPattern.length === 5) {
+    winner();
   } if(compPattern.length == playPattern.length) {
     compTurn();
   }
@@ -208,7 +178,7 @@ function compare() {
 //game over
 function over(){
   //alert("WRONG!");
-  document.getElementById('endgame').innerHTML='Wrong move! Please Try Again!';
+  document.getElementById('primary').innerHTML='<img src="https://media.giphy.com/media/O5NyCibf93upy/giphy.gif">' + ' Wrong move! Please try again';
   cloneAudio(play5);
   compPattern = [];
   initialize();
@@ -216,13 +186,6 @@ function over(){
 
 
 
-//function timeout() {
-//  setTimeout(alert, 5000);
-//}
-
-//function test() {
-//  alert("hello");
-//}
 
 //clone audio
 function cloneAudio(audioNode) {
@@ -285,7 +248,8 @@ function playerClickUp(evt) {
 //winner
 function winner(){
   //alert("WRONG!");
-  document.getElementById('endgame').innerHTML='<img src="assets/excited.gif">';
+  document.getElementById('primary').innerHTML='<img src="http://2.bp.blogspot.com/-BwDUPcT7agI/Vlh-bWkjZMI/AAAAAAAAARo/7LOPN8PJQfg/s320/Excited-Kid-Gif.gif">' + 'You Won!';
+  cloneAudio(play7);
   initialize();
 }
 
@@ -305,6 +269,7 @@ function enable() {
 function initialize() {
   disable();
   enableStart();
+  compPattern = [];
 
 }
 
