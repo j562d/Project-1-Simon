@@ -199,13 +199,10 @@ function compare() {
   for(var i = 0; i < playPattern.length; i++) {
     if(compPattern[i] !=playPattern[i]) {
       over();
-    } if(playPattern.length == 5) {
-    winner();
-    break;
-    } if(compPattern.length == playPattern.length) {
+    }
+  } if(compPattern.length == playPattern.length) {
     compTurn();
   }
-}
 }
 
 //game over
