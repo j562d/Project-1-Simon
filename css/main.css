@@ -1,5 +1,5 @@
 * {
-  font-family: 'Finger Paint', cursive;
+  font-family: 'Bungee Inline', cursive;
 }
 
 body {
@@ -10,9 +10,12 @@ body {
 
 
 #main {
-  font-size: 50px;
+  font-size: 60px;
   color: white;
+  margin-top: 110px;
+  text-align: center;
 }
+
 #container {
     width: 960px;
     margin: 0 auto;
@@ -22,7 +25,7 @@ body {
     float: left;
     width: 230px;
     margin-right: 20px;
-    margin-top: 100px;
+    margin-top: 70px;
     color: white;
 }
 
@@ -41,9 +44,6 @@ body {
     margin-top: 100px;
 }
 
-#footer {
-    clear: both;
-}
 
 .block {
     margin:5px;
@@ -81,18 +81,8 @@ body {
 #round {
   color: white;
   font-size: 25px;
-
-
 }
 
-#test {
-  text-align: center;
-}
-
-p {
-  color: white;
-  text-align: center;
-}
 
 button {
   font-size: 20px;
@@ -101,6 +91,4 @@ button {
 
 }
 
-#endgame {
-  font-size: 30px;
-}
+

@@ -1,5 +1,4 @@
 /*----variables----*/
-
 var compPattern = [];
 var playPattern = [];
 var startBtn = document.querySelector('button');
@@ -9,26 +8,13 @@ var greenBox = document.getElementById('cell3');
 var yellowBox = document.getElementById('cell4');
 var parent = document.getElementById('container');
 
-
-
 /*----event listeners-----*/
-
 parent.addEventListener('click', playerChoice);
-
-
 startBtn.addEventListener('click', startGame);
-
 parent.addEventListener('mousedown', playerClickDown);
-
-
 parent.addEventListener('mouseup', playerClickUp);
 
-
-
 /*----functions-----*/
-
-disable();
-
 
 function playSound1 () {
     cloneAudio(play1);
@@ -46,48 +32,28 @@ function playSound4 () {
     cloneAudio(play4);
 }
 
-
-
-
 //adds random number to compter's array//
 function compTurn() {
   disable();
   var random = Math.floor(Math.random()*4+1);
   compPattern.push(random);
   playPattern = [];
-  roundCounter();
+  document.getElementById('round').innerHTML = "Round " + compPattern.length;
   setTimeout(displayColors, 1000);
 }
 
-
-
-
 function unHighlight() {
-    for(var i = 0; i < compPattern.length; i++) {
-     if (compPattern[i] === 1)  {
-      document.getElementById('cell1').removeAttribute("style", "opacity: 1");
-      } else if (compPattern[i] === 2) {
-          document.getElementById('cell2').removeAttribute("style", "opacity: 1");
-        } else if (compPattern[i] === 3) {
-          document.getElementById('cell3').removeAttribute("style", "opacity: 1");
-        } else if (compPattern[i] === 4) {
-          document.getElementById('cell4').removeAttribute("style", "opacity: 1");
-        }
-      }
+      redBox.removeAttribute("style", "opacity: 1");
+      blueBox.removeAttribute("style", "opacity: 1");
+      greenBox.removeAttribute("style", "opacity: 1");
+      yellowBox.removeAttribute("style", "opacity: 1");
   }
-
-
-
 
 // timer variables
 var tickResolution = 150;
 var ticksPerColor = 2;
 var ticksBetween = 1;
 var timerId;
- var random = Math.floor(Math.random()*4+1);
-
-// elements
-
 
 // helper functions
 function displayColors() {
@@ -113,7 +79,6 @@ function displayColors() {
       }
     };
     if (tickCount ===  hideTick) {
-      //display.innerHTML = '';
       unHighlight();
       colorIdx++;
       if (colorIdx === compPattern.length) {
@@ -125,42 +90,14 @@ function displayColors() {
   }
 }
 
-
-
-
 //start game function
 function startGame() {
   document.getElementById('primary').innerHTML='&nbsp;';
   cloneAudio(play6);
-  compPattern = [];
   playPattern = [];
   setTimeout(compTurn, 1000);
   disableStart();
 }
-
-//keeps track of round
-function roundCounter() {
-  document.getElementById('round').innerHTML = "Round " + compPattern.length;
-}
-
-//plays computer's array
-function playbackComputer() {
-  for(var i = 0; i < compPattern.length; i++) {
-   if (compPattern[i] === 1)  {
-    document.getElementById('cell1').setAttribute("style", "opacity: 1");
-    } else if (compPattern[i] === 2) {
-        document.getElementById('cell2').setAttribute("style", "opacity: 1");
-      } else if (compPattern[i] === 3) {
-        document.getElementById('cell3').setAttribute("style", "opacity: 1");
-      } else if (compPattern[i] === 4) {
-        document.getElementById('cell4').setAttribute("style", "opacity: 1");
-      }
-    }
-}
-
-
-
-
 
 //compare arrays
 function compare() {
@@ -168,7 +105,7 @@ function compare() {
     if(compPattern[i] !=playPattern[i]) {
       over();
     }
-  } if(compPattern[i] === playPattern[i] && playPattern.length === 5) {
+  } if(compPattern[i] === playPattern[i] && playPattern.length === 3) {
     winner();
   } if(compPattern.length == playPattern.length) {
     compTurn();
@@ -178,14 +115,10 @@ function compare() {
 //game over
 function over(){
   //alert("WRONG!");
-  document.getElementById('primary').innerHTML='<img src="https://media.giphy.com/media/O5NyCibf93upy/giphy.gif">' + ' Wrong move! Please try again';
+  document.getElementById('primary').innerHTML='<img src="http://www.reactiongifs.com/r/mjl.gif">' + ' Wrong move! Please try again';
   cloneAudio(play5);
-  compPattern = [];
   initialize();
 }
-
-
-
 
 //clone audio
 function cloneAudio(audioNode) {
@@ -270,7 +203,6 @@ function initialize() {
   disable();
   enableStart();
   compPattern = [];
-
 }
 
 function enableStart() {
@@ -280,3 +212,5 @@ function enableStart() {
 function disableStart() {
   startBtn.removeEventListener('click', startGame);
 }
+
+initialize();
