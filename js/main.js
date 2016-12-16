@@ -13,6 +13,7 @@ parent.addEventListener('click', playerChoice);
 startBtn.addEventListener('click', startGame);
 parent.addEventListener('mousedown', playerClickDown);
 parent.addEventListener('mouseup', playerClickUp);
+document.documentElement.addEventListener('mouseup', redUp);
 
 /*----functions-----*/
 
@@ -104,8 +105,9 @@ function compare() {
   for(var i = 0; i < playPattern.length; i++) {
     if(compPattern[i] !=playPattern[i]) {
       over();
+      break;
     }
-  } if(compPattern[i] === playPattern[i] && playPattern.length === 3) {
+  } if(compPattern[i] === playPattern[i] && playPattern.length === 10) {
     winner();
   } if(compPattern.length == playPattern.length) {
     compTurn();
@@ -214,3 +216,10 @@ function disableStart() {
 }
 
 initialize();
+
+function redUp() {
+  redBox.setAttribute("style", "opacity:.3");
+  blueBox.setAttribute("style", "opacity:.3");
+  greenBox.setAttribute("style", "opacity:.3");
+  yellowBox.setAttribute("style", "opacity:.3");
+}
