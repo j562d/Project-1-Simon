@@ -1,5 +1,6 @@
 * {
   font-family: 'Bungee Inline', cursive;
+  color: white;
 }
 
 body {
@@ -8,10 +9,8 @@ body {
   -webkit-user-select: none;
 }
 
-
 #main {
   font-size: 60px;
-  color: white;
   margin-top: 110px;
   text-align: center;
 }
@@ -26,7 +25,6 @@ body {
     width: 230px;
     margin-right: 20px;
     margin-top: 70px;
-    color: white;
     font-size: 30px;
 }
 
@@ -45,51 +43,42 @@ body {
     margin-top: 100px;
 }
 
-
 .block {
     margin: 5px;
     display: inline-block;
     height: 150px;
     width: 150px;
-    background-color: blue;
     border: 5px solid black;
+    opacity: .3;
 }
 
-#cell1 {
+#red {
   background-image: url("http://i.imgur.com/CC4Qg4Q.jpg");
-  opacity: .3;
   border-radius: 150px 0 0 0;
 }
 
-#cell2 {
+#blue {
   background-image: url("http://i.imgur.com/JHAs2Jd.jpg");
-  opacity: .3;
   border-radius: 0 150px 0 0;
 }
 
-#cell3 {
+#green {
   background-image: url("http://i.imgur.com/XnT6sPp.jpg");
-  opacity: .3;
   border-radius: 0 0 0 150px;
 }
 
-#cell4 {
+#yellow {
   background-image: url("http://i.imgur.com/A5W6LDm.jpg");
-  opacity: .3;
   border-radius: 0 0 150px 0;
 }
 
 #round {
-  color: white;
   font-size: 25px;
 }
-
 
 button {
   font-size: 20px;
   margin-top: 20px;
   text-align: center;
-
+  color: black;
 }
-
-

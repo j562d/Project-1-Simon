@@ -2,33 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simon</title>
+  <title>Simon Says</title>
   <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <p id="main">SIMON SAYS</p>
   <div id="container">
-    <div id="primary">
-    </div>
+    <div id="primary"></div>
     <div id="content">
-      <div id="cell1" class="block"></div>
-      <div id="cell2" class="block"></div>
-      <div id="cell3" class="block"></div>
-      <div id="cell4" class="block"></div>
+      <div class="block" id="red"></div>
+      <div class="block" id="blue"></div>
+      <div class="block" id="green"></div>
+      <div class="block" id="yellow"></div>
     </div>
     <div id="secondary">
       <p id="round">&nbsp;</p>
       <button>START</button>
     </div>
   </div>
-  <audio id="play1" src="assets/piano1.wav"></audio>
-  <audio id="play2" src="assets/piano2.wav"></audio>
-  <audio id="play3" src="assets/piano3.wav"></audio>
-  <audio id="play4" src="assets/piano4.wav"></audio>
-  <audio id="play5" src="assets/lose.mp3"></audio>
-  <audio id="play6" src="assets/You Loyal.mp3"></audio>
-  <audio id="play7" src="assets/winmessage.mp3"></audio>
+  <audio id="sound1" src="assets/piano1.wav"></audio>
+  <audio id="sound2" src="assets/piano2.wav"></audio>
+  <audio id="sound3" src="assets/piano3.wav"></audio>
+  <audio id="sound4" src="assets/piano4.wav"></audio>
+  <audio id="sound5" src="assets/lose.mp3"></audio>
+  <audio id="sound6" src="assets/startup.mp3"></audio>
+  <audio id="sound7" src="assets/winmessage.mp3"></audio>
   <script src="js/main.js"></script>
 </body>
 </html>
