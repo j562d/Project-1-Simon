@@ -1,45 +1,28 @@
-/*----variables----*/
-var compPattern = [];
-var playPattern = [];
+/*----variables----------------------------------*/
+var computer = [];
+var player = [];
 var startBtn = document.querySelector('button');
 var redBox = document.getElementById('cell1');
 var blueBox = document.getElementById('cell2');
 var greenBox = document.getElementById('cell3');
 var yellowBox = document.getElementById('cell4');
-var parent = document.getElementById('container');
+var boxes = document.getElementById('container');
 
-/*----event listeners-----*/
-parent.addEventListener('click', playerChoice);
+/*----event listeners---------------------------*/
+boxes.addEventListener('click', playerPick);
 startBtn.addEventListener('click', startGame);
-parent.addEventListener('mousedown', playerClickDown);
-parent.addEventListener('mouseup', playerClickUp);
-document.documentElement.addEventListener('mouseup', redUp);
+boxes.addEventListener('mousedown', playerMouseDown);
+document.documentElement.addEventListener('mouseup', playerMouseUp);
 
-/*----functions-----*/
+/*----functions--------------------------------*/
 
-function playSound1 () {
-    cloneAudio(play1);
-}
-
-function playSound2 () {
-    cloneAudio(play2);
-}
-
-function playSound3 () {
-    cloneAudio(play3);
-}
-
-function playSound4 () {
-    cloneAudio(play4);
-}
-
-//adds random number to compter's array//
+//adds random number to compter's array
 function compTurn() {
   disable();
   var random = Math.floor(Math.random()*4+1);
-  compPattern.push(random);
-  playPattern = [];
-  document.getElementById('round').innerHTML = "Round " + compPattern.length;
+  computer.push(random);
+  player = [];
+  document.getElementById('round').innerHTML = "Round " + computer.length;
   setTimeout(displayColors, 1000);
 }
 
@@ -65,24 +48,24 @@ function displayColors() {
     var showTick = colorIdx * (ticksBetween + ticksPerColor);
     var hideTick = ticksPerColor + colorIdx * (ticksBetween + ticksPerColor);
     if (tickCount ===  showTick) {
-   if (compPattern[colorIdx] === 1)  {
+   if (computer[colorIdx] === 1)  {
     document.getElementById('cell1').setAttribute("style", "opacity: 1");
-    playSound1();
-    } else if (compPattern[colorIdx] === 2) {
+    cloneAudio(play1);
+    } else if (computer[colorIdx] === 2) {
         document.getElementById('cell2').setAttribute("style", "opacity: 1");
-        playSound2();
-      } else if (compPattern[colorIdx] === 3) {
+        cloneAudio(play2);
+      } else if (computer[colorIdx] === 3) {
         document.getElementById('cell3').setAttribute("style", "opacity: 1");
-        playSound3();
-      } else if (compPattern[colorIdx] === 4) {
+        cloneAudio(play3);
+      } else if (computer[colorIdx] === 4) {
         document.getElementById('cell4').setAttribute("style", "opacity: 1");
-        playSound4();
+        cloneAudio(play4);
       }
     };
     if (tickCount ===  hideTick) {
       unHighlight();
       colorIdx++;
-      if (colorIdx === compPattern.length) {
+      if (colorIdx === computer.length) {
         clearInterval(timerId);
         enable();
       }
@@ -95,21 +78,21 @@ function displayColors() {
 function startGame() {
   document.getElementById('primary').innerHTML='&nbsp;';
   cloneAudio(play6);
-  playPattern = [];
+  player = [];
   setTimeout(compTurn, 1000);
   disableStart();
 }
 
 //compare arrays
 function compare() {
-  for(var i = 0; i < playPattern.length; i++) {
-    if(compPattern[i] !=playPattern[i]) {
+  for(var i = 0; i < player.length; i++) {
+    if(computer[i] !=player[i]) {
       over();
       break;
     }
-  } if(compPattern[i] === playPattern[i] && playPattern.length === 10) {
+  } if(computer[i] === player[i] && player.length === 5) {
     winner();
-  } if(compPattern.length == playPattern.length) {
+  } if(computer.length == player.length) {
     compTurn();
   }
 }
@@ -117,7 +100,7 @@ function compare() {
 //game over
 function over(){
   //alert("WRONG!");
-  document.getElementById('primary').innerHTML='<img src="http://www.reactiongifs.com/r/mjl.gif">' + ' Wrong move! Please try again';
+  document.getElementById('primary').innerHTML='<img src="assets/mjl.gif">' + ' Wrong move! Please try again';
   cloneAudio(play5);
   initialize();
 }
@@ -129,21 +112,21 @@ function cloneAudio(audioNode) {
 }
 
 //pushes player's choice to player array
-function playerChoice(evt) {
+function playerPick(evt) {
     var clickedItem = evt.target.id
     if (clickedItem ==='cell1')
-        playPattern.push(1);
+        player.push(1);
     if (clickedItem ==='cell2')
-        playPattern.push(2);
+        player.push(2);
     if (clickedItem ==='cell3')
-        playPattern.push(3);
+        player.push(3);
     if (clickedItem ==='cell4')
-        playPattern.push(4);
+        player.push(4);
     compare();
     }
 
 //plays sound and flashes on player's click
-function playerClickDown(evt) {
+function playerMouseDown(evt) {
   var clickedEl = evt.target.id
     if (clickedEl ==='cell1') {
         cloneAudio(play1);
@@ -163,48 +146,31 @@ function playerClickDown(evt) {
       }
 }
 
-//unhighligts on mouse up
-function playerClickUp(evt) {
-  var clickedEl = evt.target.id
-    if (clickedEl ==='cell1') {
-        redBox.setAttribute("style", "opacity:.3");
-    }
-    if (clickedEl ==='cell2') {
-        blueBox.setAttribute("style", "opacity:.3");
-    }
-    if (clickedEl ==='cell3') {
-        greenBox.setAttribute("style", "opacity:.3");
-    }
-    if (clickedEl ==='cell4') {
-        yellowBox.setAttribute("style", "opacity:.3");
-    }
-}
-
 //winner
 function winner(){
   //alert("WRONG!");
-  document.getElementById('primary').innerHTML='<img src="http://2.bp.blogspot.com/-BwDUPcT7agI/Vlh-bWkjZMI/AAAAAAAAARo/7LOPN8PJQfg/s320/Excited-Kid-Gif.gif">' + 'You Won!';
+  document.getElementById('primary').innerHTML='<img src="assets/excited.gif">' + 'You Won!!!';
   cloneAudio(play7);
   initialize();
 }
 
 //disable event handlers
 function disable() {
-  parent.removeEventListener('click', playerChoice);
-  parent.removeEventListener('mousedown', playerClickDown);
-  parent.removeEventListener('mouseup', playerClickUp);
+  boxes.removeEventListener('click', playerPick);
+  boxes.removeEventListener('mousedown', playerMouseDown);
+  document.documentElement.removeEventListener('mouseup', playerMouseUp);
 }
 
 function enable() {
-  parent.addEventListener('click', playerChoice);
-  parent.addEventListener('mousedown', playerClickDown);
-  parent.addEventListener('mouseup', playerClickUp);
+  boxes.addEventListener('click', playerPick);
+  boxes.addEventListener('mousedown', playerMouseDown);
+  document.documentElement.addEventListener('mouseup', playerMouseUp);
 }
 
 function initialize() {
   disable();
   enableStart();
-  compPattern = [];
+  computer = [];
 }
 
 function enableStart() {
@@ -217,9 +183,10 @@ function disableStart() {
 
 initialize();
 
-function redUp() {
+function playerMouseUp() {
   redBox.setAttribute("style", "opacity:.3");
   blueBox.setAttribute("style", "opacity:.3");
   greenBox.setAttribute("style", "opacity:.3");
   yellowBox.setAttribute("style", "opacity:.3");
 }
+
