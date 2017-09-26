@@ -4,8 +4,7 @@
 }
 
 body {
-  background-image: url("http://i.imgur.com/tHeABza.jpg");
-  background-size: cover;
+  background-color: black;
   -webkit-user-select: none;
 }
 
